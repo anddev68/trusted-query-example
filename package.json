@@ -1,0 +1,13 @@
+{
+  "name": "trusted-query-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "s": "pnpm -C packages/server",
+    "c": "pnpm -C packages/client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
