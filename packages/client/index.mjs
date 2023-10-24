@@ -23,7 +23,7 @@ async function main() {
         // { hello: 'world' } が 帰ってくればOK
         console.log(data)
     } catch(e) {
-        console.log(e)
+        console.error(e)
     }
 
     // 異常系
@@ -38,7 +38,7 @@ async function main() {
         console.log(data)
     } catch(e) {
         // クエリとHMACが合わないのでエラーになる
-        console.log(e)
+        console.log("error")
     }
 }
 

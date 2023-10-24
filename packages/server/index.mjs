@@ -11,14 +11,16 @@ function useTrustedQuery () {
       const { request, params, setParams } = payload
       const {query, hmac} = params
 
-      // SECRET_KEYを知らない人はHMACを作ることができないので、
-      // SECRET_KEYを知っている人が作ったクエリであることが証明できる
-      const target = crypto.createHmac("sha1", SECRET_KEY).update(query).digest('hex')
-      if(target !== hmac) {
+      // SECRET_KEYを知らない人はクエリに対応するHMACを作ることができないので、
+      // HMACの検証が通れば、そのクエリはSECRET_KEYを知っている人が作ったクエリであることが証明できる
+      const correct = crypto.createHmac("sha1", SECRET_KEY).update(query).digest('hex')
+      console.log({query, hmac, correct})
+
+      if(correct !== hmac) {
         throw new Error("hmac is not match.")
       }
 
-      setParams({query: "{\n  hello\n}"})
+      setParams({query})
     },
     onParse: ({ setParsedDocument, context: { request } }) => {
 
